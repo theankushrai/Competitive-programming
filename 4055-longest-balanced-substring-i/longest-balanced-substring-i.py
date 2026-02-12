@@ -2,8 +2,8 @@ class Solution:
     def longestBalanced(self, s: str) -> int:
 
         def is_same_freq(char_count):
+            first_element_count= next(iter(char_count.values()))
             for el,count in char_count.items():
-                first_element_count= next(iter(char_count.values()))
                 if count!=first_element_count:
                     return False
             return True
