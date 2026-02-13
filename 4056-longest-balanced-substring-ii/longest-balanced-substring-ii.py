@@ -2,9 +2,18 @@ class Solution:
     def longestBalanced(self, s: str) -> int:
         n = len(s)
         p = [[0, 0, 0]]
-        for c in s:
-            p.append(p[-1][:])
-            p[-1]["abc".index(c)] += 1
+
+        for ch in s:
+            a, b, c = p[-1]   # unpack previous counts
+        
+            if ch == 'a':
+                a += 1
+            elif ch == 'b':
+                b += 1
+            else:
+                c += 1
+        
+            p.append([a, b, c])
 
         ans = 0
         m = {}
@@ -18,7 +27,7 @@ class Solution:
                 (-6, c, a),         # b
                 (-7, a, b),         # c
             ]:
-                if not k in m: m[k] = i
-                else: ans = max(ans, i - m[k])
+                if not k in m: m[k] = i #if signature not in map add it 
+                else: ans = max(ans, i - m[k]) #else find last occurance of that signature
 
         return ans
